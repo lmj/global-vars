@@ -20,7 +20,7 @@ Define efficient global variables in Common Lisp.
 In Common Lisp, a special variable that is never dynamically bound
 typically serves as a stand-in for a global variable. The
 `global-vars` library provides true global variables that are
-recognized by some compilers. An attempt to rebind a global variable
+implemented by some compilers. An attempt to rebind a global variable
 properly results in a compiler error. That is, a global variable
 cannot be dynamically bound.
 
