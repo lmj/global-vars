@@ -99,8 +99,9 @@ time, not compile time.")
 (progn
   (defmacro define-global-var* (&whole whole
                                 name value &optional documentation)
-    (declare (ignore name value documentation))
-    #+ccl `(ccl:defstaticvar ,@(rest whole))
+    (declare (ignore #+lispworks name value documentation))
+    ;; defstaticvar doesn't return the var name; likely a ccl bug
+    #+ccl `(progn (ccl:defstaticvar ,@(rest whole)) ',name)
     #+lispworks `(hcl:defglobal-variable ,@(rest whole)))
 
   (defmacro define-global-parameter* (&whole whole
