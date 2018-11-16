@@ -1,3 +1,5 @@
+;;;; -*- Mode: LISP; Base: 10; Syntax: ANSI-COMMON-LISP; Package: CL-USER -*-
+
 ;;; Copyright (c) 2014 James M. Lawrence
 ;;; 
 ;;; Permission is hereby granted, free of charge, to any person
