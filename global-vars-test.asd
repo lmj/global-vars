@@ -1,4 +1,4 @@
-;;;; -*- Mode: LISP; Base: 10; Syntax: ANSI-Common-lisp; Package: CL-USER -*-
+;;;; -*- Mode: LISP; Base: 10; Syntax: ANSI-Common-lisp; -*-
 
 (asdf:defsystem :global-vars/test
   :description "Test suite for global-vars."
