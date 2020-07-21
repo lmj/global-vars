@@ -160,3 +160,5 @@ time, not compile time.")
     (declare (ignore name value documentation))
     `(eval-when (:compile-toplevel :load-toplevel :execute)
        (define-global-var* ,@(rest whole)))))
+
+(pushnew :global-vars *features*)

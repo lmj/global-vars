@@ -25,15 +25,13 @@
   :description "Define efficient global variables."
   :license "MIT"
   :author "James M. Lawrence <llmjjmll@gmail.com>"
-  :serial t
-  :components ((:file "global-vars")))
+  :components ((:file "global-vars"))
+  :in-order-to ((test-op (test-op :global-vars/test))))
 
-(defmethod perform ((o test-op) (c (eql (find-system :global-vars))))
-  (declare (ignore o c))
-  (load-system '#:global-vars-test)
-  (test-system '#:global-vars-test))
-
-(defmethod perform :after ((o load-op)
-                           (c (eql (find-system :global-vars))))
-  (declare (ignore o c))
-  (pushnew :global-vars *features*))
+(defsystem :global-vars/test
+  :description "Test suite for global-vars."
+  :license "MIT"
+  :author "James M. Lawrence <llmjjmll@gmail.com>"
+  :depends-on (:global-vars)
+  :components ((:file "global-vars-test"))
+  :perform (test-op (o c) (symbol-call :global-vars-test '#:run)))
