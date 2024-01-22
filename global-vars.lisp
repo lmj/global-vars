@@ -109,7 +109,7 @@ time, not compile time.")
                                       name value &optional documentation)
     (declare (ignore name value documentation))
     #+ccl `(ccl:defstatic ,@(rest whole))
-    #+lispworks `(hcl:defglobal-parameter ,@(rest whole)))
+    #+lispworks `(hcl:defglobal-parameter ,@(rest whole))
     #+mezzano `(mezzano.internals::defglobal-parameter ,@(rest whole)))
 
   (defmacro define-global-var (&whole whole
