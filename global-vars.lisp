@@ -103,14 +103,14 @@ time, not compile time.")
     ;; defstaticvar doesn't return the var name; likely a ccl bug
     #+ccl `(progn (ccl:defstaticvar ,@(rest whole)) ',name)
     #+lispworks `(hcl:defglobal-variable ,@(rest whole))
-    #+mezzano (mezzano.internals::defglobal ,@(rest whole)))
+    #+mezzano `(mezzano.internals::defglobal ,@(rest whole)))
 
   (defmacro define-global-parameter* (&whole whole
                                       name value &optional documentation)
     (declare (ignore name value documentation))
     #+ccl `(ccl:defstatic ,@(rest whole))
     #+lispworks `(hcl:defglobal-parameter ,@(rest whole)))
-    #+mezzano (mezzano.internals::defglobal-parameter ,@(rest whole)))
+    #+mezzano `(mezzano.internals::defglobal-parameter ,@(rest whole)))
 
   (defmacro define-global-var (&whole whole
                                name value &optional documentation)
