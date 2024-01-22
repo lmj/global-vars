@@ -95,20 +95,22 @@ time, not compile time.")
        (remprop ',name +value-key+)
        ',name)))
 
-#+(or ccl lispworks)
+#+(or ccl lispworks mezzano)
 (progn
   (defmacro define-global-var* (&whole whole
                                 name value &optional documentation)
     (declare (ignore #+lispworks name value documentation))
     ;; defstaticvar doesn't return the var name; likely a ccl bug
     #+ccl `(progn (ccl:defstaticvar ,@(rest whole)) ',name)
-    #+lispworks `(hcl:defglobal-variable ,@(rest whole)))
+    #+lispworks `(hcl:defglobal-variable ,@(rest whole))
+    #+mezzano `(mezzano.internals::defglobal ,@(rest whole)))
 
   (defmacro define-global-parameter* (&whole whole
                                       name value &optional documentation)
     (declare (ignore name value documentation))
     #+ccl `(ccl:defstatic ,@(rest whole))
-    #+lispworks `(hcl:defglobal-parameter ,@(rest whole)))
+    #+lispworks `(hcl:defglobal-parameter ,@(rest whole))
+    #+mezzano `(mezzano.internals::defglobal-parameter ,@(rest whole)))
 
   (defmacro define-global-var (&whole whole
                                name value &optional documentation)
@@ -125,7 +127,7 @@ time, not compile time.")
        (remprop ',name +value-key+)
        ',name)))
 
-#-(or sbcl ccl lispworks)
+#-(or sbcl ccl lispworks mezzano)
 (progn
   (defmacro define-global-parameter* (name value &optional documentation)
     `(progn
